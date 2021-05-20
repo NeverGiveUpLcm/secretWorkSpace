@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1> hello Springboot</h1>
+
+<a href="/user"> get张三</a>
+
+<form method="post" action="/user">
+    姓名POST<input type="text">
+    <button type="submit">POST</button>
+</form>
+<form method="post" action="/user">
+    <input name="_m" value="put">
+    姓名PUT<input type="text" name="name">
+    <button type="submit">PUT</button>
+</form>
+
+<form method="post" action="/user">
+    <input name="_m" value="delete">
+    姓名DELETE<input type="text">
+    <button type="submit">DELETE</button>
+</form>
+
+
+<a href="/car/15/owner/张三">pathvariable</a>
+
+<a href="/cars/bwt;price=999;color=red,blue,yellow">宝马车</a>
+
+
+<form action="/people" method="post">
+    姓名<input name="userName" type="text">
+    年龄<input name="age" type="text">
+    <!--生日<input name="birth" type="date">-->
+    宠物姓名<input name="pet.name" type="text">
+    宠物年龄<input name="pet.age" type="text">
+    <button type="submit">提交</button>
+</form>
+
+<form action="/people" method="post">
+    people<input name="people" type="text">
+    <button type="submit">提交</button>
+</form>
+
+
+<form action="/upload" enctype="multipart/form-data" method="post">
+    姓名<input name="name" type="text">
+    年龄<input name="age" type="text">
+    头像 <input name="head" type="file">
+    生活照<input name="photo" type="file" multiple>
+    <button type="submit">提交</button>
+</form>
+
+</body>
+</html>

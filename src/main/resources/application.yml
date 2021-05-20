@@ -1,0 +1,100 @@
+spring:
+  mvc:
+    static-path-pattern: /res/**
+  profiles:
+    active: production
+    group:
+      production[0]: name
+      production[1]: age
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/girls?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #启用statFilter,开启Druid的监控页
+    filters: stat,wall
+    druid:
+      stat-view-servlet:   #配置监控页功能
+        enabled: true
+        url-pattern: /druid/*
+        login-password: root
+        login-username: root
+        reset-enable: false
+      web-stat-filter:   #配置web应用监控功能
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      aop-patterns: [com.itcast.springboot.*]  #监控springBean
+      filters: stat,wall            #开启sql监控与防火墙
+      filter:
+        stat:       #对StatFilter进行详细的配置
+          slow-sql-millis: 1000
+          log-slow-sql: true
+          enabled: true
+        wall:     #对WallFilter进行详细的配置
+          enabled: true
+          config:
+            drop-table-allow: false
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888
+        instance:
+          prefer-ip: true
+
+
+#  redis:
+#    host: localhost
+#    port: 6379
+#    password: root
+#    lettuce:
+#      pool:
+#        max-active: 8
+#        max-wait: -1
+mybatis:
+#  #mybaits的全局配置文件
+#  config-location: classpath:/mybatis/mybatis-config.xml
+  #mybatis的mapper文件的位置
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+
+#management是所有acturtor的配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'          #以web方式暴露所有的端点
+    enabled-by-default: true  #暴露所有端点信息
+  #对某个端点的具体配置
+  endpoint:
+    beans:
+      enabled: true
+    health:
+      enabled: true
+      show-details: always
+
+
+
+info:
+  appName: boot-admin
+  version: 2.0.1
+  mavenProjectName: @project.artifactId@  #使用@@可以获取maven的pom文件值
+  mavenProjectVersion: @project.version@
+
+
+person:
+  name: lisi
+
+hello:
+  prefix: xixi
+  suffix: haha
+
+
+
+
+
+
+
+
+
